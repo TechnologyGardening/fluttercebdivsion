@@ -27,15 +27,17 @@ class _StopwatchState extends State<Stopwatch> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "$seconds ${_secondsTotext()}",
-            style: Theme.of(context).textTheme.headlineSmall,
+          Expanded(
+            child: Text(
+              "$seconds ${_secondsTotext()}",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
           ),
           const SizedBox(
             height: 10,
           ),
-          controlpanel(),
-          controlpanel1(),
+          Expanded(child: controlpanel()),
+          Expanded(child: builderDisplay()),
         ],
       )),
     );
@@ -139,6 +141,33 @@ class _StopwatchState extends State<Stopwatch> {
       seconds = 0;
     });
     print(laps);
+  }
+
+  Widget buildDisplay() {
+    return ListView(
+      children: [
+        for (int i in laps)
+          ListTile(
+            leading: const Icon(Icons.star),
+            title: Text("Lap  : ${i / 1000} seconds"),
+            trailing: const Icon(Icons.delete),
+          )
+      ],
+    );
+  }
+
+  Widget builderDisplay() {
+    return ListView.builder(
+      itemCount: laps.length,
+      itemBuilder: (context, index) {
+        final milis = laps[index];
+        return ListTile(
+          leading: const Icon(Icons.star),
+          title: Text("Lap  : ${milis / 1000} seconds"),
+          trailing: const Icon(Icons.cancel),
+        );
+      },
+    );
   }
 
   void _onTick(Timer timer) {
