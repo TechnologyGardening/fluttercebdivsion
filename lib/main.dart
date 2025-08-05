@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttercebdivsion/2207flutter/loginscreen.dart';
 // import 'package:fluttercebdivsion/1507flutter/basiccompo.dart';
 // import 'package:fluttercebdivsion/1507flutter/columnexample.dart';
 // import 'package:fluttercebdivsion/2207flutter/calculatorlayout.dart';
@@ -13,7 +14,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Stopwatch(),
+      home: LoginScreenPart(),
     );
   }
 }
